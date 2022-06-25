@@ -1,5 +1,6 @@
-import {  Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, IconButton, } from "@mui/material";
 import UserItem from "./UserItem/UserItem";
+import { NavigateNext, Refresh } from '@mui/icons-material';
 
 function UsersList() {
 	return (
@@ -32,7 +33,43 @@ function UsersList() {
 					Пользователи
 				</Typography>
 			</Box>
-			<UserItem/>
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					background: '#FFFFFF',
+				}}
+			>
+				<IconButton
+					sx={{
+						background: '#1698E1',
+						"&:hover": {
+							background: "#096192"
+						}
+					}}
+				>
+					<Refresh
+						sx={{
+							color: '#FFFFFF',
+						}}
+					/>
+				</IconButton>
+				<IconButton
+					sx={{
+						background: '#1698E1',
+						"&:hover": {
+							background: "#096192"
+						}
+					}}
+				>
+					<NavigateNext
+						sx={{
+							color: '#FFFFFF',
+						}}
+					/>
+				</IconButton>
+			</Box>
+			<UserItem />
 		</Grid>
 	);
 };

@@ -18,8 +18,7 @@ function UserGradeRemove() {
 					width: '60px',
 					height: '60px'
 				}}
-			>
-			</Avatar>
+			/>
 			<Typography
 				variant="subtitle1"
 				sx={{
@@ -56,11 +55,9 @@ function UserGradeRemove() {
 						sx={{
 							color: '#FFFFFF',
 						}}
-					>
-					</Remove>
+					/>
 				</IconButton>
-				<FavoriteBorder>
-				</FavoriteBorder>
+				<FavoriteBorder/>
 				<IconButton
 					sx={{
 						background: '#8BCC64',
@@ -73,8 +70,7 @@ function UserGradeRemove() {
 						sx={{
 							color: '#FFFFFF',
 						}}
-					>
-					</Add>
+					/>
 				</IconButton>
 			</Box>
 		</Box>

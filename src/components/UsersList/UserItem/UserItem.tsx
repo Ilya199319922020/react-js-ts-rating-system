@@ -18,8 +18,7 @@ function UserItem() {
 					width: '60px',
 					height: '60px'
 				}}
-			>
-			</Avatar>
+			/>
 			<Typography
 				variant="subtitle1"
 				sx={{
@@ -42,11 +41,9 @@ function UserItem() {
 						sx={{
 							color: '#FFFFFF',
 						}}
-					>
-					</Remove>
+					/>
 				</IconButton>
-				<FavoriteBorder>
-				</FavoriteBorder>
+				<FavoriteBorder />
 				<IconButton
 					sx={{
 						background: '#8BCC64',
@@ -59,8 +56,7 @@ function UserItem() {
 						sx={{
 							color: '#FFFFFF',
 						}}
-					>
-					</Add>
+					/>
 				</IconButton>
 			</Box>
 		</Box>

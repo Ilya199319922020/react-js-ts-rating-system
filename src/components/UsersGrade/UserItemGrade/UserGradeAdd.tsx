@@ -18,8 +18,7 @@ function UserGradeAdd() {
 					width: '60px',
 					height: '60px'
 				}}
-			>
-			</Avatar>
+			/>
 			<Typography
 				variant="subtitle1"
 				sx={{
@@ -30,7 +29,6 @@ function UserGradeAdd() {
 				имя позователя
 			</Typography>
 			<Box
-
 			>
 				<IconButton
 					sx={{
@@ -44,11 +42,9 @@ function UserGradeAdd() {
 						sx={{
 							color: '#FFFFFF',
 						}}
-					>
-					</Remove>
+					/>
 				</IconButton>
-				<FavoriteBorder>
-				</FavoriteBorder>
+				<FavoriteBorder/>
 				<IconButton
 					sx={{
 						background: '#8BCC64',
@@ -63,8 +59,7 @@ function UserGradeAdd() {
 						sx={{
 							color: '#FFFFFF',
 						}}
-					>
-					</Add>
+					/>
 				</IconButton>
 
 			</Box>
