@@ -1,8 +1,29 @@
+import React from 'react';
 import { Box, Grid, Typography, IconButton, } from "@mui/material";
 import UserItem from "./UserItem/UserItem";
 import { NavigateNext, Refresh } from '@mui/icons-material';
 
-function UsersList() {
+interface PropsUsers {
+	users: Array<any>,
+	isRefresh: Boolean,
+	isNextNewUsers: Boolean,
+	serIsRefresh: (isRefresh: Boolean) => void,
+	setIsNextNewUsers: (isNextNewUsers: Boolean) => void,
+};
+
+const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUsers }) => {
+	const listUsers = users
+		.map((e: any) => <UserItem
+			key={e.id} id={e.id} username={e.username}
+		/>);
+
+	const onRefresh = (): void => {
+		serIsRefresh(true)
+	};
+	const onNextUsers = (): void => {
+		setIsNextNewUsers(true);
+	};
+
 	return (
 		<Grid
 			item
@@ -47,6 +68,7 @@ function UsersList() {
 							background: "#096192"
 						}
 					}}
+					onClick={onRefresh}
 				>
 					<Refresh
 						sx={{
@@ -61,6 +83,7 @@ function UsersList() {
 							background: "#096192"
 						}
 					}}
+					onClick={onNextUsers}
 				>
 					<NavigateNext
 						sx={{
@@ -69,7 +92,7 @@ function UsersList() {
 					/>
 				</IconButton>
 			</Box>
-			<UserItem />
+			{listUsers}
 		</Grid>
 	);
 };

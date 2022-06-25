@@ -21,25 +21,44 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 		case 'FETCH_USERS':
 			return {
 				...state,
-				users: action.users
+				users: action.users,
+			}
+		case 'FETCH_NEXT_USERS':
+			return {
+				...state,
+				users: [...state.users, ...action.newUsers],
 			}
 
 		default:
-			return state;  
+			return state;
 	}
 };
 
 
- const actions = {
-	setFetchUsers: (users: Array<any>) => ({ type: 'FETCH_USERS', users} as const),
+const actions = {
+	setFetchUsers: (users: Array<any>,) => ({ type: 'FETCH_USERS', users } as const),
+	setNextNewUsers: (newUsers: Array<any>,) => ({ type: 'FETCH_NEXT_USERS', newUsers } as const),
 };
 
-export const fetchUsers = (): ThunkType => {
+export const fetchUsers = (isNextNewUsers: Boolean): ThunkType => {
 	return async (dispatch) => {
 		const response = await axios.get('https://random-data-api.com/api/users/random_user?size=3')
 			.then(res => res.data);
-		dispatch(actions.setFetchUsers(response));
-	}
-};
+			if(!isNextNewUsers){
+				dispatch(actions.setFetchUsers(response));
+			}else {
+				dispatch(actions.setNextNewUsers(response));
+			}
+			}
+	};
+
+// export const fetchNextNewUsers = (): ThunkType => {
+// 	return async (dispatch) => {
+// 		const response = await axios.get('https://random-data-api.com/api/users/random_user?size=3')
+// 			.then(res => res.data);
+// 		dispatch(actions.setNextNewUsers(response));
+// 	}
+// };
+
 
 export default usersReducer;

@@ -1,11 +1,19 @@
-import { Avatar, Box, Button, IconButton, Typography } from "@mui/material";
+import { Avatar, Box,  IconButton, Typography } from "@mui/material";
 import { Remove, Add, FavoriteBorder } from '@mui/icons-material';
 
-function UserItem() {
+interface PropsUsers {
+	username: string,
+	id: number,
+	key: number,
+	
+}
+
+const UserItem: React.FC<PropsUsers> = ({username}) => {
+
 	return (
 		<Box
 			sx={{
-				height: '808px',
+				height: '70px',
 				background: '#FFFFFF',
 				display: 'flex',
 				justifyContent: 'space-between',
@@ -26,7 +34,7 @@ function UserItem() {
 					display: 'flex',
 				}}
 			>
-				имя позователя
+				{username}
 			</Typography>
 			<Box>
 				<IconButton

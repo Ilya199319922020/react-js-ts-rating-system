@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUsers } from "../reduxStore/reducers/usersReducers";
 import { useSelector } from "react-redux";
@@ -7,14 +7,26 @@ import { Box, Grid, Typography } from "@mui/material";
 import UsersGrade from "./UsersGrade/UsersGrade";
 import UsersList from "./UsersList/UsersList";
 
-function Users() {
-	const users = useSelector(getUsersAll);
-	const dispatch: any = useDispatch();           //поправить тип хука
-	console.log(users)
+const Users = () => {
+	const [isRefresh, serIsRefresh] = useState<Boolean>(true);
+	const [isNextNewUsers, setIsNextNewUsers] = useState<Boolean>(false);
+
+	const users: Array<any> = useSelector(getUsersAll);
+	const dispatch: any = useDispatch();                           //поправить тип хука
 
 	useEffect(() => {
-		dispatch(fetchUsers())
-	}, []);
+		if (isRefresh) {
+			dispatch(fetchUsers(isNextNewUsers));
+			serIsRefresh(false);
+		}
+	}, [isRefresh]);
+
+	useEffect(() => {
+		if (isNextNewUsers) {
+			dispatch(fetchUsers(isNextNewUsers));
+			setIsNextNewUsers(false);
+		}
+	}, [isNextNewUsers]);
 
 	return (
 		<Box
@@ -26,14 +38,20 @@ function Users() {
 			}}
 		>
 			<Typography
-			variant="h6"
+				variant="h6"
 			>
 				Интерфейс системы оценки / бана / поощрения пользователей
 			</Typography>
 			<Grid
 				container columns={16}
 			>
-				<UsersList />
+				<UsersList
+					users={users}
+					isRefresh={isRefresh}
+					isNextNewUsers={isNextNewUsers}
+					serIsRefresh={serIsRefresh}
+					setIsNextNewUsers={setIsNextNewUsers}
+				/>
 				<UsersGrade />
 			</Grid>
 		</Box>
