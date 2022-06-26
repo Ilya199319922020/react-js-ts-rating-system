@@ -14,7 +14,7 @@ interface PropsUsers {
 const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUsers }) => {
 	const listUsers = users
 		.map((e: any) => <UserItem
-			key={e.id} id={e.id} username={e.username}
+			key={e.uid} id={e.id} username={e.username} userGrade={e.userGrade}
 		/>);
 
 	const onRefresh = (): void => {

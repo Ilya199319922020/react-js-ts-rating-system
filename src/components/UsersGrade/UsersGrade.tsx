@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material"
 import UserGradeAdd from "./UserItemGrade/UserGradeAdd";
 import UserGradeRemove from "./UserItemGrade/UserGradeRemove";
 
-function UsersGrade() {
+const UsersGrade = () => {
 	return (
 		<>
 			<Grid

@@ -1,12 +1,12 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Users from './components/Users';
+import UsersComponent from './components/Users';
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={< Users />} />
+      <Route path='/' element={< UsersComponent />} />
     </Routes>
   </BrowserRouter>
   );

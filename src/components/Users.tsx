@@ -1,18 +1,24 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchUsers } from "../reduxStore/reducers/usersReducers";
 import { useSelector } from "react-redux";
-import { getUsersAll } from "../reduxStore/selector";
+import { getUserGradeNegative, getUsersAll, getUsersGradePositive } from "../reduxStore/selector";
 import { Box, Grid, Typography } from "@mui/material";
 import UsersGrade from "./UsersGrade/UsersGrade";
 import UsersList from "./UsersList/UsersList";
 
-const Users = () => {
+const Users: React.FC<any> = (props) => {
+	const dispatch: any = useDispatch();                             //поправить тип хука  
 	const [isRefresh, serIsRefresh] = useState<Boolean>(true);
 	const [isNextNewUsers, setIsNextNewUsers] = useState<Boolean>(false);
 
+	const usersGradeNegative: Array<any> = useSelector(getUserGradeNegative);
+	const usersGradePositive: Array<any> = useSelector(getUsersGradePositive);
 	const users: Array<any> = useSelector(getUsersAll);
-	const dispatch: any = useDispatch();                           //поправить тип хука
+
+	useEffect(() => {
+		dispatch(fetchUsers(isNextNewUsers));
+	}, []);
 
 	useEffect(() => {
 		if (isRefresh) {
@@ -57,5 +63,6 @@ const Users = () => {
 		</Box>
 	);
 };
+const UsersComponent = React.memo(Users)
 
-export default Users;
+export default UsersComponent;

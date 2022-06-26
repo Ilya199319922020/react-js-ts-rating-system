@@ -1,14 +1,36 @@
-import { Avatar, Box,  IconButton, Typography } from "@mui/material";
+import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { Remove, Add, FavoriteBorder } from '@mui/icons-material';
+import { useEffect, useState } from "react";
+import { actions } from "../../../reduxStore/reducers/usersReducers";
+import { useDispatch } from "react-redux";
 
 interface PropsUsers {
 	username: string,
 	id: number,
-	key: number,
-	
-}
+	key: string,
+	userGrade: number,
+};
 
-const UserItem: React.FC<PropsUsers> = ({username}) => {
+const UserItem: React.FC<PropsUsers> = ({ username,  id }) => {
+	const [gradeUser, setGradeUser] = useState<number>(0);
+	const dispatch: any = useDispatch();
+
+	const onSetGradePositive = (): void => {
+		setGradeUser(prev => prev + 1)
+	};
+	const onSetGradeNegative = (): void => {
+		setGradeUser(prev => prev - 1)
+	};
+
+	useEffect(() => {
+		if (gradeUser > 0) {
+			dispatch(actions.setAddNewGradeUser(id, gradeUser));
+			dispatch(actions.setFilterUsers(gradeUser))
+		} else if (gradeUser < 0) {
+			dispatch(actions.setAddNewGradeUser(id, gradeUser));
+			dispatch(actions.setFilterUsers(gradeUser))
+		}
+	}, [gradeUser]);
 
 	return (
 		<Box
@@ -44,6 +66,7 @@ const UserItem: React.FC<PropsUsers> = ({username}) => {
 							backgroundColor: "#fc0349"
 						}
 					}}
+					onClick={onSetGradeNegative}
 				>
 					<Remove
 						sx={{
@@ -59,6 +82,7 @@ const UserItem: React.FC<PropsUsers> = ({username}) => {
 							backgroundColor: "#2E7900"
 						}
 					}}
+					onClick={onSetGradePositive}
 				>
 					<Add
 						sx={{
