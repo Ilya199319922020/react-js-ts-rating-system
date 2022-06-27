@@ -32,7 +32,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 
 	useEffect(() => {
 		if (isDeleteNegativeUser) {
-			dispatch(actions.setGradePositive(id, gradeCurrentNegative));
+			dispatch(actions.setGradeUser(id, gradeCurrentNegative));
 			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
 		}
 		setIsDeleteNegativeUser(false);

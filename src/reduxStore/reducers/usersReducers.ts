@@ -44,7 +44,7 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 				}),
 
 			}
-		case 'ADD_GRADE_POSITIVE':
+		case 'ADD_GRADE_USER':
 			return {
 				...state,
 				userGradePositive: state.userGradePositive.map(p => {
@@ -68,16 +68,16 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 				userGradeNegative: [...state.userGradeNegative, ...state.users.filter(p => p.userGrade < 0)],
 				users: [...state.users.filter(p => p.userGrade === 0)],
 			}
-		case 'FILTER_USER_GRADE':
+		case 'FILTER_USER_GRADE_POSITIVE':
 			return {
 				...state,
 				userGradePositive: [...state.userGradePositive.filter(p => p.userGrade > 0)],
-				userGradeNegative: [...state.userGradeNegative.filter(p => p.userGrade < 0)],
 				users: [...state.users, ...state.userGradePositive.filter(p => p.userGrade === 0)],
 			}
 		case 'FILTER_USER_GRADE_NEGATIVE':
 			return {
 				...state,
+				userGradeNegative: [...state.userGradeNegative.filter(p => p.userGrade < 0)],
 				users: [...state.users, ...state.userGradeNegative.filter(p => p.userGrade === 0)],
 			}
 		default:
@@ -90,9 +90,9 @@ export const actions = {
 	setNextNewUsers: (newUsers: Array<any>,) => ({ type: 'FETCH_NEXT_USERS', newUsers } as const),
 	setAddNewGradeUser: (userId: number, valueGrade: number) => ({ type: 'ADD_NEWGRADE_USER', userId, valueGrade } as const),
 	setFilterUsers: (valueGrade: number) => ({ type: 'FILTER_USERS', valueGrade } as const),
-	setGradePositive: (userId: number, valueGrade: number) => ({ type: 'ADD_GRADE_POSITIVE', userId, valueGrade } as const),
+	setGradeUser: (userId: number, valueGrade: number) => ({ type: 'ADD_GRADE_USER', userId, valueGrade } as const),
 	setFilterGradeNegative: (valueGrade: number) => ({ type: 'FILTER_USER_GRADE_NEGATIVE', valueGrade } as const),
-	setFilterGradePositive: (valueGrade: number) => ({ type: 'FILTER_USER_GRADE', valueGrade } as const),
+	setFilterGradePositive: (valueGrade: number) => ({ type: 'FILTER_USER_GRADE_POSITIVE', valueGrade } as const),
 };
 
 export const fetchUsers = (isNextNewUsers: Boolean): ThunkType => {

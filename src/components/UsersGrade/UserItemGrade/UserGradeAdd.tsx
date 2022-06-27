@@ -32,7 +32,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 
 	useEffect(() => {
 		if (isDeleteItemUser) {
-			dispatch(actions.setGradePositive(id, gradeCurrentPositive));
+			dispatch(actions.setGradeUser(id, gradeCurrentPositive));
 			dispatch(actions.setFilterGradePositive(gradeCurrentPositive));
 		}
 		setIsDeleteItemUser(false);
