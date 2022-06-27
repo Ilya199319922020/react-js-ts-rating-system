@@ -1,5 +1,6 @@
 import { Avatar, Box, Typography, IconButton } from "@mui/material";
 import { Remove, Add, FavoriteBorder } from '@mui/icons-material';
+import { useState } from "react";
 
 interface PropsUserGradeRemove {
 	username: string,
@@ -9,6 +10,19 @@ interface PropsUserGradeRemove {
 };
 
 const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade }) => {
+	const [gradeCurrentNegative, setGradeCurrentNegative] = useState<number>(userGrade);
+
+	const onChangeGradePlus = (): void => {
+		if (gradeCurrentNegative <= (-1)) {
+			setGradeCurrentNegative(prev => prev + 1);
+		}
+	};
+	const onChangeGradeMinus = (): void => {
+		if (gradeCurrentNegative >= (-4)) {
+			setGradeCurrentNegative(prev => prev - 1);
+		}
+	};
+
 	return (
 		<Box
 			sx={{
@@ -46,7 +60,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 				<Typography
 					variant="caption"
 				>
-					{userGrade}
+					{gradeCurrentNegative}
 				</Typography>
 			</Box>
 			<Box>
@@ -57,6 +71,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 							backgroundColor: "#fc0349"
 						}
 					}}
+					onClick={onChangeGradeMinus}
 				>
 					<Remove
 						sx={{
@@ -72,6 +87,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 							backgroundColor: "#2E7900"
 						}
 					}}
+					onClick={onChangeGradePlus}
 				>
 					<Add
 						sx={{

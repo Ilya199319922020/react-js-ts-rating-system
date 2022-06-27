@@ -1,5 +1,6 @@
 import { Avatar, Box, Typography, IconButton } from "@mui/material";
 import { Remove, Add, FavoriteBorder } from '@mui/icons-material';
+import { useState } from "react";
 
 interface PropsUserGradeAdd {
 	username: string,
@@ -9,6 +10,19 @@ interface PropsUserGradeAdd {
 };
 
 const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) => {
+	const [gradeCurrentPositive, setGradeCurrentPositive] = useState<number>(userGrade);
+
+	const onChangeGradePlus = (): void => {
+		if (gradeCurrentPositive <= 4) {
+			setGradeCurrentPositive(prev => prev + 1);
+		}
+	};
+	const onChangeGradeMinus = (): void => {
+		if (gradeCurrentPositive >= 1) {
+			setGradeCurrentPositive(prev => prev - 1);
+		}
+	};
+
 	return (
 		<Box
 			sx={{
@@ -44,6 +58,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 							backgroundColor: "#fc0349"
 						}
 					}}
+					onClick={onChangeGradeMinus}
 				>
 					<Remove
 						sx={{
@@ -61,6 +76,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 							backgroundColor: "#2E7900"
 						}
 					}}
+					onClick={onChangeGradePlus}
 				>
 					<Add
 						sx={{
@@ -81,7 +97,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 				<Typography
 					variant="caption"
 				>
-					{userGrade}
+					{gradeCurrentPositive}
 				</Typography>
 			</Box>
 		</Box>

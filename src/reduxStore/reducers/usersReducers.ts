@@ -17,7 +17,6 @@ type UsersAction = ActionsTypes<typeof actions>;
 export type ThunkType = ThunkAction<Promise<void>, Reducers, unknown, UsersAction>
 
 const usersReducer = (state = initialState, action: UsersAction): UsersState => {
-
 	switch (action.type) {
 		case 'FETCH_USERS':
 			let grade: number = 0;
@@ -48,7 +47,7 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 		case 'FILTER_USERS':
 			return {
 				...state,
-				userGradePositive: [...state.userGradePositive, ...state.users.filter(p => p.userGrade > 0)],    
+				userGradePositive: [...state.userGradePositive, ...state.users.filter(p => p.userGrade > 0)],
 				userGradeNegative: [...state.userGradeNegative, ...state.users.filter(p => p.userGrade < 0)],
 				users: [...state.users.filter(p => p.userGrade === 0)],
 			}
