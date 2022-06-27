@@ -1,6 +1,8 @@
 import { Avatar, Box, Typography, IconButton } from "@mui/material";
-import { Remove, Add, FavoriteBorder } from '@mui/icons-material';
-import { useState } from "react";
+import { Remove, Add, FavoriteBorder, DeleteOutline } from '@mui/icons-material';
+import { useEffect, useState } from "react";
+import { actions } from "../../../reduxStore/reducers/usersReducers";
+import { useDispatch } from "react-redux";
 
 interface PropsUserGradeAdd {
 	username: string,
@@ -10,7 +12,9 @@ interface PropsUserGradeAdd {
 };
 
 const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) => {
+	const dispatch: any = useDispatch();
 	const [gradeCurrentPositive, setGradeCurrentPositive] = useState<number>(userGrade);
+	const [isDeleteItemUser, setIsDeleteItemUser] = useState<Boolean>(false);
 
 	const onChangeGradePlus = (): void => {
 		if (gradeCurrentPositive <= 4) {
@@ -22,6 +26,17 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 			setGradeCurrentPositive(prev => prev - 1);
 		}
 	};
+	const onDeleteItemUser = (): void => {
+		setIsDeleteItemUser(true);
+	};
+
+	useEffect(() => {
+		if (isDeleteItemUser) {
+			dispatch(actions.setGradePositive(id, gradeCurrentPositive));
+			dispatch(actions.setFilterGradePositive(gradeCurrentPositive));
+		}
+		setIsDeleteItemUser(false);
+	}, [isDeleteItemUser]);
 
 	return (
 		<Box
@@ -49,6 +64,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 			>
 				{username}
 			</Typography>
+
 			<Box
 			>
 				<IconButton
@@ -86,20 +102,39 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 				</IconButton>
 
 			</Box>
-			<Box
-				sx={{
-					width: '35px',
-					height: '35px',
-					border: '2px solid #8BCC64',
-					borderRadius: '5px',
-				}}
-			>
-				<Typography
-					variant="caption"
-				>
-					{gradeCurrentPositive}
-				</Typography>
-			</Box>
+			{
+				gradeCurrentPositive === 0
+					?
+					<IconButton
+						sx={{
+							background: '#F17171',
+							width: '35px',
+							height: '35px',
+							"&:hover": {
+								backgroundColor: "#fc0349"
+							}
+						}}
+						onClick={onDeleteItemUser}
+					>
+						<DeleteOutline />
+					</IconButton>
+					:
+					<Box
+						sx={{
+							width: '35px',
+							height: '35px',
+							border: '2px solid #8BCC64',
+							borderRadius: '5px',
+						}}
+					>
+						<Typography
+							variant="caption"
+						>
+							{gradeCurrentPositive}
+						</Typography>
+
+					</Box>
+			}
 		</Box>
 	);
 };

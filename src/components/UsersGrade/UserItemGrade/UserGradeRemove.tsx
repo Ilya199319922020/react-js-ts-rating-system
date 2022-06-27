@@ -1,6 +1,8 @@
 import { Avatar, Box, Typography, IconButton } from "@mui/material";
-import { Remove, Add, FavoriteBorder } from '@mui/icons-material';
-import { useState } from "react";
+import { Remove, Add, FavoriteBorder, DeleteOutline } from '@mui/icons-material';
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { actions } from "../../../reduxStore/reducers/usersReducers";
 
 interface PropsUserGradeRemove {
 	username: string,
@@ -10,7 +12,9 @@ interface PropsUserGradeRemove {
 };
 
 const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade }) => {
+	const dispatch: any = useDispatch();
 	const [gradeCurrentNegative, setGradeCurrentNegative] = useState<number>(userGrade);
+	const [isDeleteNegativeUser, setIsDeleteNegativeUser] = useState<Boolean>(false);
 
 	const onChangeGradePlus = (): void => {
 		if (gradeCurrentNegative <= (-1)) {
@@ -22,6 +26,17 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 			setGradeCurrentNegative(prev => prev - 1);
 		}
 	};
+	const onDeleteNegativeUser = (): void => {
+		setIsDeleteNegativeUser(true);
+	};
+
+	useEffect(() => {
+		if (isDeleteNegativeUser) {
+			dispatch(actions.setGradePositive(id, gradeCurrentNegative));
+			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
+		}
+		setIsDeleteNegativeUser(false);
+	}, [isDeleteNegativeUser]);
 
 	return (
 		<Box
@@ -49,20 +64,38 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 			>
 				{username}
 			</Typography>
-			<Box
-				sx={{
-					width: '35px',
-					height: '35px',
-					border: '2px solid #F17171',
-					borderRadius: '5px',
-				}}
-			>
-				<Typography
-					variant="caption"
-				>
-					{gradeCurrentNegative}
-				</Typography>
-			</Box>
+			{
+				gradeCurrentNegative === 0
+					?
+					<IconButton
+						sx={{
+							background: '#F17171',
+							width: '35px',
+							height: '35px',
+							"&:hover": {
+								backgroundColor: "#fc0349"
+							}
+						}}
+						onClick={onDeleteNegativeUser}
+					>
+						<DeleteOutline />
+					</IconButton>
+					:
+					<Box
+						sx={{
+							width: '35px',
+							height: '35px',
+							border: '2px solid #F17171',
+							borderRadius: '5px',
+						}}
+					>
+						<Typography
+							variant="caption"
+						>
+							{gradeCurrentNegative}
+						</Typography>
+					</Box>
+			}
 			<Box>
 				<IconButton
 					sx={{
