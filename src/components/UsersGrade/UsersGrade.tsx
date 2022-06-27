@@ -2,7 +2,19 @@ import { Box, Grid, Typography } from "@mui/material"
 import UserGradeAdd from "./UserItemGrade/UserGradeAdd";
 import UserGradeRemove from "./UserItemGrade/UserGradeRemove";
 
-const UsersGrade = () => {
+const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) => {
+	const listGradeNegativeUser = usersGradeNegative
+		.map((n: any) => <UserGradeRemove
+			key={n.uid} id={n.id} username={n.username} userGrade={n.userGrade}
+		/>
+		);
+
+	const listGradePositiveUser = usersGradePositive
+		.map((n: any) => <UserGradeAdd
+			key={n.uid} id={n.id} username={n.username} userGrade={n.userGrade}
+		/>
+		);
+
 	return (
 		<>
 			<Grid
@@ -33,9 +45,8 @@ const UsersGrade = () => {
 					>
 						Отрицательные оценки
 					</Typography>
-
 				</Box>
-				<UserGradeRemove />
+				{listGradeNegativeUser}
 			</Grid>
 			<Grid
 				item
@@ -64,7 +75,7 @@ const UsersGrade = () => {
 						Положительные оценки
 					</Typography>
 				</Box>
-				<UserGradeAdd />
+				{listGradePositiveUser}
 			</Grid>
 		</>
 	);

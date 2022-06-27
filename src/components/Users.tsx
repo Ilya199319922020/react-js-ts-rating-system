@@ -15,7 +15,7 @@ const Users: React.FC<any> = (props) => {
 	const usersGradeNegative: Array<any> = useSelector(getUserGradeNegative);
 	const usersGradePositive: Array<any> = useSelector(getUsersGradePositive);
 	const users: Array<any> = useSelector(getUsersAll);
-
+	
 	useEffect(() => {
 		dispatch(fetchUsers(isNextNewUsers));
 	}, []);
@@ -58,7 +58,10 @@ const Users: React.FC<any> = (props) => {
 					serIsRefresh={serIsRefresh}
 					setIsNextNewUsers={setIsNextNewUsers}
 				/>
-				<UsersGrade />
+				<UsersGrade
+					usersGradeNegative={usersGradeNegative}
+					usersGradePositive={usersGradePositive}
+				/>
 			</Grid>
 		</Box>
 	);

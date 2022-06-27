@@ -7,6 +7,6 @@ export const getUsersGradePositive = (state: any) => {
 };
 
 export const getUserGradeNegative = (state: any) => {
-	return state.users.userGradePositive;
+	return state.users.userGradeNegative;
 };
 

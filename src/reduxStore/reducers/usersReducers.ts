@@ -16,7 +16,6 @@ export interface UsersState {
 type UsersAction = ActionsTypes<typeof actions>;
 export type ThunkType = ThunkAction<Promise<void>, Reducers, unknown, UsersAction>
 
-
 const usersReducer = (state = initialState, action: UsersAction): UsersState => {
 
 	switch (action.type) {
@@ -49,9 +48,9 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 		case 'FILTER_USERS':
 			return {
 				...state,
+				userGradePositive: [...state.userGradePositive, ...state.users.filter(p => p.userGrade > 0)],    
+				userGradeNegative: [...state.userGradeNegative, ...state.users.filter(p => p.userGrade < 0)],
 				users: [...state.users.filter(p => p.userGrade === 0)],
-				userGradePositive: [...state.users.filter(p => p.userGrade > 0)],
-				userGradeNegative: [...state.users.filter(p => p.userGrade < 0)],
 			}
 		default:
 			return state;

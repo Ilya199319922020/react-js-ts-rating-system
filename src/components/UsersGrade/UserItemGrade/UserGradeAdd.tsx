@@ -1,11 +1,18 @@
 import { Avatar, Box, Typography, IconButton } from "@mui/material";
 import { Remove, Add, FavoriteBorder } from '@mui/icons-material';
 
-function UserGradeAdd() {
+interface PropsUserGradeAdd {
+	username: string,
+	id: number,
+	key: string,
+	userGrade: number,
+};
+
+const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) => {
 	return (
 		<Box
 			sx={{
-				height: '808px',
+				height: '70px',
 				background: '#F6FCF2',
 				display: 'flex',
 				justifyContent: 'space-between',
@@ -26,7 +33,7 @@ function UserGradeAdd() {
 					display: 'flex',
 				}}
 			>
-				имя позователя
+				{username}
 			</Typography>
 			<Box
 			>
@@ -44,7 +51,7 @@ function UserGradeAdd() {
 						}}
 					/>
 				</IconButton>
-				<FavoriteBorder/>
+				<FavoriteBorder />
 				<IconButton
 					sx={{
 						background: '#8BCC64',
@@ -74,7 +81,7 @@ function UserGradeAdd() {
 				<Typography
 					variant="caption"
 				>
-					4
+					{userGrade}
 				</Typography>
 			</Box>
 		</Box>
