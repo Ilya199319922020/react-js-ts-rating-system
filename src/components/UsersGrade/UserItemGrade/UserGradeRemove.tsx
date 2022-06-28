@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography, IconButton, Modal } from "@mui/material";
+import { Avatar, Box, Typography, IconButton, Modal, Button, Stack } from "@mui/material";
 import { Remove, Add, FavoriteBorder, DeleteOutline } from '@mui/icons-material';
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -21,18 +21,19 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 		if (gradeCurrentNegative <= (-1)) {
 			setGradeCurrentNegative(prev => prev + 1);
 		}
-
 	};
 	const onChangeGradeMinus = (): void => {
 		if (gradeCurrentNegative >= (-4)) {
 			setGradeCurrentNegative(prev => prev - 1);
 		}
-
 	};
 	const onDeleteNegativeUser = (): void => {
 		setIsDeleteNegativeUser(true);
 	};
-	const handleClose = () => setOpen(false);
+	const handleOnClose = (): void => {
+		setOpen(false);
+		setIsDeleteNegativeUser(true)
+	};
 
 	useEffect(() => {
 		if (gradeCurrentNegative === (-5)) {
@@ -48,36 +49,74 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 		setIsDeleteNegativeUser(false);
 	}, [isDeleteNegativeUser]);
 
-
+	useEffect(() => {
+		if (isDeleteNegativeUser) {
+			dispatch(actions.deleteUserNegative(id, gradeCurrentNegative));
+			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
+		}
+		setIsDeleteNegativeUser(false);
+	}, [open]);
 
 	return (
 		<>
-
 			<div>
 				<Modal
 					keepMounted
 					open={open}
-					onClose={handleClose}
 					aria-labelledby="keep-mounted-modal-title"
 					aria-describedby="keep-mounted-modal-description"
 				>
-					<Box sx={{
-						position: 'absolute' as 'absolute',
-						top: '50%',
-						left: '50%',
-						transform: 'translate(-50%, -50%)',
-						width: 400,
-						bgcolor: 'background.paper',
-						border: '2px solid #000',
-						boxShadow: 24,
-						p: 4,
-					}}>
-						<Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-							Text in a modal
-						</Typography>
-						<Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-							Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-						</Typography>
+					<Box
+						sx={{
+							position: 'absolute' as 'absolute',
+							top: '50%',
+							left: '50%',
+							transform: 'translate(-50%, -50%)',
+							width: '540px',
+							heigth: '285px',
+							bgcolor: '#F6FCF2',
+							borderRadius: '10px 10px 0px 0px',
+							border: '3px solid #1698E1',
+							boxShadow: 24,
+							p: 4,
+						}}>
+						<Box
+							sx={{
+								minWidth: '540px',
+								heigth: '42px',
+								bgcolor: '#F17171',
+							}}
+						>
+							<Typography variant="h6" component="h2">
+								Ууу...
+							</Typography>
+						</Box>
+						<Box>
+							<Typography variant="h6" component="h2">
+								{username}
+							</Typography>
+							<Typography sx={{ mt: 2 }}>
+								оказался не очень прилежным пользователем
+							</Typography>
+							<Typography sx={{ mt: 2 }}>
+								Пора забанить!
+							</Typography>
+							<Typography sx={{ mt: 2 }}>
+								Сделать это?
+							</Typography>
+							<Stack
+								spacing={2} direction="row"
+							>
+								<Button
+									size="medium"
+									variant="contained"
+									onClick={handleOnClose}
+								>
+									О, да!
+								</Button>
+
+							</Stack>
+						</Box>
 					</Box>
 				</Modal>
 			</div>
