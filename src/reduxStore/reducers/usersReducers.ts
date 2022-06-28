@@ -92,6 +92,18 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 				}),
 				users: [...state.users, ...state.userGradeNegative.filter(p => p.userGrade === 0)],
 			}
+		case 'REMOVE_USER_POSITIVE':
+			let valueRatingUser: number = 0;
+			return {
+				...state,
+				userGradePositive: state.userGradePositive.map(p => {
+					if (p.id === action.userId) {
+						return { ...p, userGrade: valueRatingUser }
+					}
+					return p;
+				}),
+				users: [...state.users, ...state.userGradePositive.filter(p => p.userGrade === 0)],
+			}
 		default:
 			return state;
 	}
@@ -106,6 +118,7 @@ export const actions = {
 	setFilterGradeNegative: (valueGrade: number) => ({ type: 'FILTER_USER_GRADE_NEGATIVE', valueGrade } as const),
 	setFilterGradePositive: (valueGrade: number) => ({ type: 'FILTER_USER_GRADE_POSITIVE', valueGrade } as const),
 	deleteUserNegative: (userId: number, valueGrade: number) => ({ type: 'REMOVE_USER_NEGATIVE', userId, valueGrade } as const),
+	deleteUserPositive: (userId: number, valueGrade: number) => ({ type: 'REMOVE_USER_POSITIVE', userId, valueGrade } as const),
 };
 
 export const fetchUsers = (isNextNewUsers: Boolean): ThunkType => {

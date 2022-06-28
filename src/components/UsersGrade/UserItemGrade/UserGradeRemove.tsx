@@ -36,18 +36,18 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 	};
 
 	useEffect(() => {
-		if (gradeCurrentNegative === (-5)) {
-			setOpen(true)
-		}
-	}, [gradeCurrentNegative]);
-
-	useEffect(() => {
 		if (isDeleteNegativeUser) {
 			dispatch(actions.setGradeUser(id, gradeCurrentNegative));
 			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
 		}
 		setIsDeleteNegativeUser(false);
 	}, [isDeleteNegativeUser]);
+
+	useEffect(() => {
+		if (gradeCurrentNegative === (-5)) {
+			setOpen(true)
+		}
+	}, [gradeCurrentNegative]);
 
 	useEffect(() => {
 		if (isDeleteNegativeUser) {
@@ -63,8 +63,6 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 				<Modal
 					keepMounted
 					open={open}
-					aria-labelledby="keep-mounted-modal-title"
-					aria-describedby="keep-mounted-modal-description"
 				>
 					<Box
 						sx={{
@@ -114,7 +112,6 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 								>
 									О, да!
 								</Button>
-
 							</Stack>
 						</Box>
 					</Box>
@@ -132,7 +129,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 			>
 				<Avatar
 					sx={{
-						background: '#82D0FC',
+						background: '#F17171',
 						width: '60px',
 						height: '60px'
 					}}
