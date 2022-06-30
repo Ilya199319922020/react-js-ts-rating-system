@@ -35,19 +35,31 @@ const Users: React.FC<any> = (props) => {
 	return (
 		<Box
 			sx={{
+
 				flexGrow: 1,
-				width: '1920px',
-				height: '1031px',
+				width: '100vw',
+				minHeight: '100vh',
 				background: 'linear-gradient(148.14deg, #E0F4FF -13.52%, #FFFFFF 116.75%)',
 			}}
 		>
 			<Typography
-				variant="h6"
+				variant="h5"
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					pt: '30px',
+				}}
 			>
 				Интерфейс системы оценки / бана / поощрения пользователей
 			</Typography>
 			<Grid
 				container columns={16}
+				sx={{
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					mt: '50px',
+				}}
 			>
 				<UsersList
 					users={users}

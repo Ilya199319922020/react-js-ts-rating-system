@@ -40,26 +40,33 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 				background: '#FFFFFF',
 				display: 'flex',
 				justifyContent: 'space-between',
-
 			}}
 		>
 			<Avatar
 				sx={{
 					background: '#82D0FC',
 					width: '60px',
-					height: '60px'
+					height: '60px',
+					display: 'flex',
+					alignItems: 'center',
 				}}
 			/>
 			<Typography
 				variant="subtitle1"
 				sx={{
-					fontSize: '14px',
 					display: 'flex',
+					alignItems: 'center',
+					fontSize: '14px',
 				}}
 			>
 				{username}
 			</Typography>
-			<Box>
+			<Box
+				sx={{
+					display: 'flex',
+					alignItems: 'center',
+				}}
+			>
 				<IconButton
 					sx={{
 						background: '#F17171',
@@ -75,7 +82,12 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 						}}
 					/>
 				</IconButton>
-				<FavoriteBorder />
+				<FavoriteBorder
+					sx={{
+						px: '5px',
+						color: '#1698E1'
+					}}
+				/>
 				<IconButton
 					sx={{
 						background: '#8BCC64',

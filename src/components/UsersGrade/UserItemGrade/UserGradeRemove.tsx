@@ -124,14 +124,16 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 					background: '#FBEFEF',
 					display: 'flex',
 					justifyContent: 'space-between',
-
+					alignItems: 'center',
 				}}
 			>
 				<Avatar
 					sx={{
 						background: '#F17171',
 						width: '60px',
-						height: '60px'
+						height: '60px',
+						display: 'flex',
+						alignItems: 'center',
 					}}
 				/>
 				<Typography
@@ -139,6 +141,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 					sx={{
 						fontSize: '14px',
 						display: 'flex',
+						alignItems: 'center',
 					}}
 				>
 					{username}
@@ -152,7 +155,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 								width: '35px',
 								height: '35px',
 								"&:hover": {
-									backgroundColor: "#fc0349"
+									backgroundColor: "#fc0349",
 								}
 							}}
 							onClick={onDeleteNegativeUser}
@@ -166,16 +169,29 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 								height: '35px',
 								border: '2px solid #F17171',
 								borderRadius: '5px',
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+
 							}}
 						>
 							<Typography
 								variant="caption"
+								sx={{
+									fontSize: '24px',
+									color: '#F17171',
+								}}
 							>
 								{gradeCurrentNegative}
 							</Typography>
 						</Box>
 				}
-				<Box>
+				<Box
+					sx={{
+						display: 'flex',
+						alignItems: 'center',
+					}}
+				>
 					<IconButton
 						sx={{
 							background: '#F17171',
@@ -191,7 +207,12 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 							}}
 						/>
 					</IconButton>
-					<FavoriteBorder />
+					<FavoriteBorder
+						sx={{
+							px: '5px',
+							color: '#1698E1'
+						}}
+					/>
 					<IconButton
 						sx={{
 							background: '#8BCC64',

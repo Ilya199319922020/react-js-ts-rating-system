@@ -20,9 +20,10 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 			<Grid
 				item
 				sx={{
-					width: '350px',
-					height: '850px',
-
+					width: '464px',
+					height: '420px',
+					ml: '41px',
+					background: '#FBEFEF',
 				}}
 			>
 				<Box
@@ -31,7 +32,7 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 						justifyContent: 'center',
 						alignItems: 'center',
 						background: '#F17171',
-						width: '350px',
+						width: '464px',
 						height: '42px',
 						borderRadius: '10px 0px 0px 0px',
 						paddingRight: '25px',
@@ -40,19 +41,26 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 					<Typography
 						variant="subtitle1"
 						sx={{
-							fontSize: '24px'
+							fontSize: '17px'
 						}}
 					>
 						Отрицательные оценки
 					</Typography>
 				</Box>
-				{listGradeNegativeUser}
+				<Box
+					sx={{
+						m: '20px 51px 43px 51px',
+					}}
+				>
+					{listGradeNegativeUser}
+				</Box>
 			</Grid>
 			<Grid
 				item
 				sx={{
-					width: '350px',
-					height: '850px',
+					width: '464px',
+					height: '420px',
+					background: '#F6FCF2',
 				}}
 			>
 				<Box
@@ -61,7 +69,7 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 						justifyContent: 'center',
 						alignItems: 'center',
 						background: '#8BCC64',
-						width: '350px',
+						width: '464px',
 						height: '42px',
 						borderRadius: '0px 10px 0px 0px',
 					}}
@@ -69,13 +77,19 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 					<Typography
 						variant="subtitle1"
 						sx={{
-							fontSize: '24px'
+							fontSize: '17px'
 						}}
 					>
 						Положительные оценки
 					</Typography>
 				</Box>
-				{listGradePositiveUser}
+				<Box
+					sx={{
+						m: '20px 51px 43px 51px',
+					}}
+				>
+					{listGradePositiveUser}
+				</Box>
 			</Grid>
 		</>
 	);

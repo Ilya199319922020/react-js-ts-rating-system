@@ -124,7 +124,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 					background: '#F6FCF2',
 					display: 'flex',
 					justifyContent: 'space-between',
-
+					alignItems: 'center',
 				}}
 			>
 				<Avatar
@@ -145,6 +145,10 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 				</Typography>
 
 				<Box
+					sx={{
+						display: 'flex',
+						alignItems: 'center',
+					}}
 				>
 					<IconButton
 						sx={{
@@ -161,7 +165,12 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 							}}
 						/>
 					</IconButton>
-					<FavoriteBorder />
+					<FavoriteBorder
+						sx={{
+							px: '5px',
+							color: '#1698E1'
+						}}
+					/>
 					<IconButton
 						sx={{
 							background: '#8BCC64',
@@ -204,10 +213,17 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 								height: '35px',
 								border: '2px solid #8BCC64',
 								borderRadius: '5px',
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
 							}}
 						>
 							<Typography
 								variant="caption"
+								sx={{
+									fontSize: '24px',
+									color: '#8BCC64',
+								}}
 							>
 								{gradeCurrentPositive}
 							</Typography>
