@@ -121,7 +121,7 @@ export const actions = {
 	deleteUserPositive: (userId: number, valueGrade: number) => ({ type: 'REMOVE_USER_POSITIVE', userId, valueGrade } as const),
 };
 
-export const fetchUsers = (isNextNewUsers: Boolean): ThunkType => {
+export const fetchUsers = (isNextNewUsers?: Boolean, isFetchUsers?: Boolean): ThunkType => {
 	return async (dispatch) => {
 		const response = await axios.get('https://random-data-api.com/api/users/random_user?size=3')
 			.then(res => res.data);

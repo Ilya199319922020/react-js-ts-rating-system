@@ -15,18 +15,16 @@ const Users: React.FC<any> = (props) => {
 	const usersGradeNegative: Array<any> = useSelector(getUserGradeNegative);
 	const usersGradePositive: Array<any> = useSelector(getUsersGradePositive);
 	const users: Array<any> = useSelector(getUsersAll);
-	
+
 	useEffect(() => {
 		dispatch(fetchUsers(isNextNewUsers));
 	}, []);
-
 	useEffect(() => {
 		if (isRefresh) {
 			dispatch(fetchUsers(isNextNewUsers));
 			serIsRefresh(false);
 		}
 	}, [isRefresh]);
-
 	useEffect(() => {
 		if (isNextNewUsers) {
 			dispatch(fetchUsers(isNextNewUsers));

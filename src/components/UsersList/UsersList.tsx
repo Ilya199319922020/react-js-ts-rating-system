@@ -16,7 +16,7 @@ const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUser
 		.map((e: any) => <UserItem
 			key={e.uid} id={e.id} username={e.username} userGrade={e.userGrade}
 		/>);
-
+console.log(users)
 	const onRefresh = (): void => {
 		serIsRefresh(true)
 	};

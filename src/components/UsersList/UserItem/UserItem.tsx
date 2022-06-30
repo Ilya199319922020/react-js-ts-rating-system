@@ -11,8 +11,9 @@ interface PropsUsers {
 	userGrade: number,
 };
 
-const UserItem: React.FC<PropsUsers> = ({ username,  id }) => {
+const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 	const [gradeUser, setGradeUser] = useState<number>(0);
+
 	const dispatch: any = useDispatch();
 
 	const onSetGradePositive = (): void => {
@@ -21,6 +22,7 @@ const UserItem: React.FC<PropsUsers> = ({ username,  id }) => {
 	const onSetGradeNegative = (): void => {
 		setGradeUser(prev => prev - 1)
 	};
+	console.log(gradeUser)
 
 	useEffect(() => {
 		if (gradeUser > 0) {
