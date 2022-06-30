@@ -22,7 +22,6 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 	const onSetGradeNegative = (): void => {
 		setGradeUser(prev => prev - 1)
 	};
-	console.log(gradeUser)
 
 	useEffect(() => {
 		if (gradeUser > 0) {

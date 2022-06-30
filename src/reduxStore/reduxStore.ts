@@ -8,6 +8,7 @@ import usersReducer from './reducers/usersReducers';
 const persistConfig = {
 	key: 'root',
 	storage,
+	blacklist:['users']
 }
 const reducers = combineReducers({
 	users: persistReducer(persistConfig, usersReducer),

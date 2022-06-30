@@ -127,7 +127,7 @@ export const fetchUsers = (isNextNewUsers?: Boolean, isFetchUsers?: Boolean): Th
 			.then(res => res.data);
 		if (!isNextNewUsers) {
 			dispatch(actions.setFetchUsers(response));
-		} else {
+		} else if(isNextNewUsers){
 			dispatch(actions.setNextNewUsers(response));
 		}
 	}
