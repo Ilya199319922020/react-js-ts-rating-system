@@ -76,20 +76,30 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 							borderRadius: '10px 10px 0px 0px',
 							border: '3px solid #1698E1',
 							boxShadow: 24,
-							p: 4,
 						}}>
 						<Box
 							sx={{
-								minWidth: '540px',
+								minWidth: '100%',
 								heigth: '42px',
 								bgcolor: '#F17171',
+								borderRadius: '6px 6px 0px 0px',
 							}}
 						>
-							<Typography variant="h6" component="h2">
+							<Typography
+								variant="h6" component="h2" textAlign={'center'}
+							>
 								Ууу...
 							</Typography>
 						</Box>
-						<Box>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								alignItems: 'center',
+								pb: '10px'
+							}}
+						>
 							<Typography variant="h6" component="h2">
 								{username}
 							</Typography>
@@ -130,8 +140,16 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 				<Avatar
 					sx={{
 						background: '#F17171',
-						width: '60px',
-						height: '60px',
+						width: {
+							sm: 40,
+							md: 40,
+							lg: 60,
+						},
+						height: {
+							sm: 40,
+							md: 40,
+							lg: 60,
+						},
 						display: 'flex',
 						alignItems: 'center',
 					}}
@@ -165,20 +183,31 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 						:
 						<Box
 							sx={{
-								width: '35px',
-								height: '35px',
+								width: {
+									sm: 20,
+									md: 35,
+									lg: 35,
+								},
+								height: {
+									sm: 20,
+									md: 35,
+									lg: 35,
+								},
 								border: '2px solid #F17171',
 								borderRadius: '5px',
 								display: 'flex',
 								alignItems: 'center',
 								justifyContent: 'center',
-
 							}}
 						>
 							<Typography
 								variant="caption"
 								sx={{
-									fontSize: '24px',
+									fontSize: {
+										sm: 14,
+										md: 20,
+										lg: 24,
+									},
 									color: '#F17171',
 								}}
 							>
@@ -194,6 +223,8 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 				>
 					<IconButton
 						sx={{
+							width: '35px',
+							height: '35px',
 							background: '#F17171',
 							"&:hover": {
 								backgroundColor: "#fc0349"
@@ -215,6 +246,8 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 					/>
 					<IconButton
 						sx={{
+							width: '35px',
+							height: '35px',
 							background: '#8BCC64',
 							"&:hover": {
 								backgroundColor: "#2E7900"

@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, Grid, Typography, IconButton, } from "@mui/material";
 import UserItem from "./UserItem/UserItem";
 import { NavigateNext, Refresh } from '@mui/icons-material';
-import { height, width } from '@mui/system';
 
 interface PropsUsers {
 	users: Array<any>,
@@ -29,8 +28,16 @@ const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUser
 		<Grid
 			item
 			sx={{
-				width: '464px',
-				height: '420px',
+				width: {
+					sm: 374,
+					md: 464,
+					lg: 464
+				},
+				minHeight: {
+					sm: 'auto',
+					md: 'auto',
+					lg: 420
+				},
 				borderRadius: '10px 10px 0px 0px',
 				background: '#FFFFFF',
 			}}
@@ -65,6 +72,8 @@ const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUser
 			>
 				<IconButton
 					sx={{
+						width: '35px',
+						height: '35px',
 						background: '#1698E1',
 						mr: '10px',
 						"&:hover": {
@@ -81,6 +90,8 @@ const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUser
 				</IconButton>
 				<IconButton
 					sx={{
+						width: '35px',
+						height: '35px',
 						background: '#1698E1',
 						ml: '10px',
 						"&:hover": {
@@ -98,7 +109,7 @@ const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUser
 			</Box>
 			<Box
 				sx={{
-					m: '0 51px 43px 51px',
+					p: '0 35px 43px 35px',
 				}}
 			>
 				{listUsers}

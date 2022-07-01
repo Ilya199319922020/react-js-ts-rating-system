@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material"
+import { Box, Grid, Stack, Typography } from "@mui/material"
 import UserGradeAdd from "./UserItemGrade/UserGradeAdd";
 import UserGradeRemove from "./UserItemGrade/UserGradeRemove";
 
@@ -16,13 +16,25 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 		);
 
 	return (
-		<>
-			<Grid
-				item
+		<Stack
+			direction={{
+				xs: 'column',
+				md: 'column',
+				lg: 'row',
+			}}
+		>
+			<Box
 				sx={{
-					width: '464px',
-					height: '420px',
-					ml: '41px',
+					minWidth: {
+						sm: 374,
+						md: 464,
+						lg: 464
+					},
+					minHeight: {
+						sm: 'auto',
+						md: 'auto',
+						lg: 420
+					},
 					background: '#FBEFEF',
 				}}
 			>
@@ -32,10 +44,13 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 						justifyContent: 'center',
 						alignItems: 'center',
 						background: '#F17171',
-						width: '464px',
+						width: {
+							sm: 374,
+							md: 464,
+							lg: 464
+						},
 						height: '42px',
-						borderRadius: '10px 0px 0px 0px',
-						paddingRight: '25px',
+						borderRadius: '10px 10px 0px 0px',
 					}}
 				>
 					<Typography
@@ -49,17 +64,24 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 				</Box>
 				<Box
 					sx={{
-						m: '20px 51px 43px 51px',
+						m: '20px 35px 43px 35px',
 					}}
 				>
 					{listGradeNegativeUser}
 				</Box>
-			</Grid>
-			<Grid
-				item
+			</Box>
+			<Box
 				sx={{
-					width: '464px',
-					height: '420px',
+					minWidth: {
+						sm: 374,
+						md: 464,
+						lg: 464
+					},
+					minHeight: {
+						sm: 'auto',
+						md: 'auto',
+						lg: 420
+					},
 					background: '#F6FCF2',
 				}}
 			>
@@ -69,9 +91,13 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 						justifyContent: 'center',
 						alignItems: 'center',
 						background: '#8BCC64',
-						width: '464px',
+						width: {
+							sm: 374,
+							md: 464,
+							lg: 464
+						},
 						height: '42px',
-						borderRadius: '0px 10px 0px 0px',
+						borderRadius: '10px 10px 0px 0px',
 					}}
 				>
 					<Typography
@@ -85,13 +111,13 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 				</Box>
 				<Box
 					sx={{
-						m: '20px 51px 43px 51px',
+						m: '20px 35px 43px 35px',
 					}}
 				>
 					{listGradePositiveUser}
 				</Box>
-			</Grid>
-		</>
+			</Box>
+		</Stack>
 	);
 };
 

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { fetchUsers } from "../reduxStore/reducers/usersReducers";
 import { useSelector } from "react-redux";
 import { getUserGradeNegative, getUsersAll, getUsersGradePositive } from "../reduxStore/selector";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import UsersGrade from "./UsersGrade/UsersGrade";
 import UsersList from "./UsersList/UsersList";
 
@@ -35,7 +35,6 @@ const Users: React.FC<any> = (props) => {
 	return (
 		<Box
 			sx={{
-
 				flexGrow: 1,
 				width: '100vw',
 				minHeight: '100vh',
@@ -43,20 +42,32 @@ const Users: React.FC<any> = (props) => {
 			}}
 		>
 			<Typography
-				variant="h5"
 				sx={{
 					display: 'flex',
 					justifyContent: 'center',
 					pt: '30px',
+					px: '20px',
+					textAlign: 'center',
+					fontSize: {
+						sm: 20,
+						md: 20,
+						lg: 24,
+					},
 				}}
+				
 			>
 				Интерфейс системы оценки / бана / поощрения пользователей
 			</Typography>
 			<Grid
 				container columns={16}
+				direction={{
+					xs: 'column',
+					md: 'column',
+					lg: 'row',
+				}}
 				sx={{
 					display: 'flex',
-					justifyContent: 'center',
+					justifyContent: 'space-evenly',
 					alignItems: 'center',
 					mt: '50px',
 				}}

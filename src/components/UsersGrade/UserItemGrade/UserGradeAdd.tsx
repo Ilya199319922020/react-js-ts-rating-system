@@ -77,20 +77,28 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 							borderRadius: '10px 10px 0px 0px',
 							border: '3px solid #1698E1',
 							boxShadow: 24,
-							p: 4,
 						}}>
 						<Box
 							sx={{
-								minWidth: '540px',
+								minWidth: '100%',
 								heigth: '42px',
 								bgcolor: '#8BCC64',
+								borderRadius: '6px 6px 0px 0px',
 							}}
 						>
-							<Typography variant="h6" component="h2">
+							<Typography variant="h6" component="h2" textAlign={'center'}>
 								Та дааа!
 							</Typography>
 						</Box>
-						<Box>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								justifyContent: 'center',
+								alignItems: 'center',
+								pb: '10px'
+							}}
+						>
 							<Typography variant="h6" component="h2">
 								{username}
 							</Typography>
@@ -130,8 +138,16 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 				<Avatar
 					sx={{
 						background: '#8BCC64',
-						width: '60px',
-						height: '60px'
+						width: {
+							sm: 40,
+							md: 40,
+							lg: 60,
+						},
+						height: {
+							sm: 40,
+							md: 40,
+							lg: 60,
+						},
 					}}
 				/>
 				<Typography
@@ -152,6 +168,8 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 				>
 					<IconButton
 						sx={{
+							width: '35px',
+							height: '35px',
 							background: '#F17171',
 							"&:hover": {
 								backgroundColor: "#fc0349"
@@ -209,8 +227,16 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 						:
 						<Box
 							sx={{
-								width: '35px',
-								height: '35px',
+								width: {
+									sm: 20,
+									md: 35,
+									lg: 35,
+								},
+								height: {
+									sm: 20,
+									md: 35,
+									lg: 35,
+								},
 								border: '2px solid #8BCC64',
 								borderRadius: '5px',
 								display: 'flex',
@@ -221,7 +247,11 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 							<Typography
 								variant="caption"
 								sx={{
-									fontSize: '24px',
+									fontSize: {
+										sm: 14,
+										md: 20,
+										lg: 24,
+									},
 									color: '#8BCC64',
 								}}
 							>

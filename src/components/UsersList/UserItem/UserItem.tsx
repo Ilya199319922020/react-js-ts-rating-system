@@ -40,13 +40,22 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 				background: '#FFFFFF',
 				display: 'flex',
 				justifyContent: 'space-between',
+				alignItems: 'center',
 			}}
 		>
 			<Avatar
 				sx={{
 					background: '#82D0FC',
-					width: '60px',
-					height: '60px',
+					width: {
+						sm: 40,
+						md: 40,
+						lg: 60,
+					},
+					height: {
+						sm: 40,
+						md: 40,
+						lg: 60,
+					},
 					display: 'flex',
 					alignItems: 'center',
 				}}
@@ -69,6 +78,8 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 			>
 				<IconButton
 					sx={{
+						width: '35px',
+						height: '35px',
 						background: '#F17171',
 						"&:hover": {
 							backgroundColor: "#fc0349"
@@ -90,6 +101,8 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 				/>
 				<IconButton
 					sx={{
+						width: '35px',
+						height: '35px',
 						background: '#8BCC64',
 						"&:hover": {
 							backgroundColor: "#2E7900"
