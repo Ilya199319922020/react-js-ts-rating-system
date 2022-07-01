@@ -184,11 +184,13 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 						<Box
 							sx={{
 								width: {
+									xs: 15,
 									sm: 20,
 									md: 35,
 									lg: 35,
 								},
 								height: {
+									xs: 15,
 									sm: 20,
 									md: 35,
 									lg: 35,
@@ -204,6 +206,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 								variant="caption"
 								sx={{
 									fontSize: {
+										xs: 10,
 										sm: 14,
 										md: 20,
 										lg: 24,

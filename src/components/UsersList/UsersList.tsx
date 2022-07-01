@@ -29,6 +29,7 @@ const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUser
 			item
 			sx={{
 				width: {
+					xs: 374,
 					sm: 374,
 					md: 464,
 					lg: 464

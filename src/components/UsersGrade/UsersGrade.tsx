@@ -26,6 +26,7 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 			<Box
 				sx={{
 					minWidth: {
+						xs: 374,
 						sm: 374,
 						md: 464,
 						lg: 464
@@ -44,7 +45,8 @@ const UsersGrade: React.FC<any> = ({ usersGradeNegative, usersGradePositive }) =
 						justifyContent: 'center',
 						alignItems: 'center',
 						background: '#F17171',
-						width: {
+						minWidth: {
+							xs: 374,
 							sm: 374,
 							md: 464,
 							lg: 464
