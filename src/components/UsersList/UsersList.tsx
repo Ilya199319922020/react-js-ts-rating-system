@@ -7,14 +7,22 @@ interface PropsUsers {
 	users: Array<any>,
 	isRefresh: Boolean,
 	isNextNewUsers: Boolean,
+	activeTab: number,
+	setActiveTab: (activeTab?: any) => void,
 	serIsRefresh: (isRefresh: Boolean) => void,
 	setIsNextNewUsers: (isNextNewUsers: Boolean) => void,
 };
 
-const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUsers }) => {
+const UsersList: React.FC<PropsUsers> = ({ users, activeTab, setActiveTab, serIsRefresh, setIsNextNewUsers }) => {
+
 	const listUsers = users
 		.map((e: any) => <UserItem
-			key={e.uid} id={e.id} username={e.username} userGrade={e.userGrade}
+			key={e.uid}
+			id={e.id}
+			username={e.username}
+			userGrade={e.userGrade}
+			activeTab={activeTab}
+			setActiveTab={setActiveTab}
 		/>);
 
 	const onRefresh = (): void => {
@@ -26,6 +34,7 @@ const UsersList: React.FC<PropsUsers> = ({ users, serIsRefresh, setIsNextNewUser
 
 	return (
 		<Grid
+			className={!activeTab ? 'activeTabItem' : ''}
 			item
 			sx={{
 				width: {

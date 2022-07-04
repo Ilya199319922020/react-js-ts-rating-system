@@ -29,9 +29,17 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 				)],
 			}
 		case 'FETCH_NEXT_USERS':
+			let gradeNew: number = 0;
 			return {
 				...state,
-				users: [...state.users, ...action.newUsers],
+				users: [
+					...state.users,
+					...action.newUsers.map(j => {
+						j.userGrade = gradeNew;
+						return j;
+					}
+					)
+				],
 			}
 		case 'ADD_NEWGRADE_USER':
 			return {
@@ -127,7 +135,7 @@ export const fetchUsers = (isNextNewUsers?: Boolean, isFetchUsers?: Boolean): Th
 			.then(res => res.data);
 		if (!isNextNewUsers) {
 			dispatch(actions.setFetchUsers(response));
-		} else if(isNextNewUsers){
+		} else if (isNextNewUsers) {
 			dispatch(actions.setNextNewUsers(response));
 		}
 	}

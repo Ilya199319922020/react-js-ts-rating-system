@@ -9,9 +9,11 @@ interface PropsUserGradeRemove {
 	id: number,
 	key: string,
 	userGrade: number,
+	activeTab: number,
+	setActiveTab: (activeTab: number,) => void,
 };
 
-const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade }) => {
+const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade, setActiveTab }) => {
 	const dispatch: any = useDispatch();
 	const [gradeCurrentNegative, setGradeCurrentNegative] = useState<number>(userGrade);
 	const [isDeleteNegativeUser, setIsDeleteNegativeUser] = useState<boolean>(false);
@@ -39,6 +41,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 		if (isDeleteNegativeUser) {
 			dispatch(actions.setGradeUser(id, gradeCurrentNegative));
 			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
+			setActiveTab(0);
 		}
 		setIsDeleteNegativeUser(false);
 	}, [isDeleteNegativeUser]);
@@ -53,6 +56,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 		if (isDeleteNegativeUser) {
 			dispatch(actions.deleteUserNegative(id, gradeCurrentNegative));
 			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
+			setActiveTab(0);
 		}
 		setIsDeleteNegativeUser(false);
 	}, [open]);

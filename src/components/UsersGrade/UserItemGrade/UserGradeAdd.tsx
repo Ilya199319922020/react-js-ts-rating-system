@@ -9,9 +9,11 @@ interface PropsUserGradeAdd {
 	id: number,
 	key: string,
 	userGrade: number,
+	activeTab: number,
+	setActiveTab: (activeTab: number,) => void,
 };
 
-const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) => {
+const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade, setActiveTab }) => {
 	const dispatch: any = useDispatch();
 	const [gradeCurrentPositive, setGradeCurrentPositive] = useState<number>(userGrade);
 	const [isDeleteItemUser, setIsDeleteItemUser] = useState<Boolean>(false);
@@ -40,13 +42,14 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 		if (isDeleteItemUser) {
 			dispatch(actions.setGradeUser(id, gradeCurrentPositive));
 			dispatch(actions.setFilterGradePositive(gradeCurrentPositive));
+			setActiveTab(0);
 		}
 		setIsDeleteItemUser(false);
 	}, [isDeleteItemUser]);
 
 	useEffect(() => {
 		if (gradeCurrentPositive === 5) {
-			setOpen(true)
+			setOpen(true);
 		}
 	}, [gradeCurrentPositive]);
 
@@ -54,6 +57,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade }) 
 		if (isDeleteItemUser) {
 			dispatch(actions.deleteUserPositive(id, gradeCurrentPositive));
 			dispatch(actions.setFilterGradePositive(gradeCurrentPositive));
+			setActiveTab(0);
 		}
 		setIsDeleteItemUser(false);
 	}, [open]);

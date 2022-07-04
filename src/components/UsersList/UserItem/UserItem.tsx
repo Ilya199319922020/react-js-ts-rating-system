@@ -9,27 +9,30 @@ interface PropsUsers {
 	id: number,
 	key: string,
 	userGrade: number,
+	activeTab: number,
+	setActiveTab: (activeTab?: any) => void,
 };
 
-const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
+const UserItem: React.FC<PropsUsers> = ({ username, id, activeTab, setActiveTab }) => {
 	const [gradeUser, setGradeUser] = useState<number>(0);
-
 	const dispatch: any = useDispatch();
 
 	const onSetGradePositive = (): void => {
-		setGradeUser(prev => prev + 1)
+		setGradeUser(prev => prev + 1);
 	};
 	const onSetGradeNegative = (): void => {
-		setGradeUser(prev => prev - 1)
+		setGradeUser(prev => prev - 1);
 	};
 
 	useEffect(() => {
 		if (gradeUser > 0) {
 			dispatch(actions.setAddNewGradeUser(id, gradeUser));
-			dispatch(actions.setFilterUsers(gradeUser))
+			dispatch(actions.setFilterUsers(gradeUser));
+			setActiveTab(2);
 		} else if (gradeUser < 0) {
 			dispatch(actions.setAddNewGradeUser(id, gradeUser));
-			dispatch(actions.setFilterUsers(gradeUser))
+			dispatch(actions.setFilterUsers(gradeUser));
+			setActiveTab(1);
 		}
 	}, [gradeUser]);
 
@@ -42,6 +45,7 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 				justifyContent: 'space-between',
 				alignItems: 'center',
 			}}
+
 		>
 			<Avatar
 				sx={{
@@ -117,7 +121,7 @@ const UserItem: React.FC<PropsUsers> = ({ username, id }) => {
 					/>
 				</IconButton>
 			</Box>
-		</Box>
+		</Box >
 	);
 };
 
