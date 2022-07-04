@@ -13,6 +13,7 @@ export interface UsersState {
 	userGradePositive: Array<any>,
 	userGradeNegative: Array<any>,
 };
+export type InitialState = typeof initialState;
 type UsersAction = ActionsTypes<typeof actions>;
 export type ThunkType = ThunkAction<Promise<void>, Reducers, unknown, UsersAction>
 
