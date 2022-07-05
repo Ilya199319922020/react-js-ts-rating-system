@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Ilya199319922020/react-js-ts-rating-system/static/css/main.bee9177d.css",
-    "main.js": "/Ilya199319922020/react-js-ts-rating-system/static/js/main.5552579d.js",
-    "index.html": "/Ilya199319922020/react-js-ts-rating-system/index.html",
-    "main.bee9177d.css.map": "/Ilya199319922020/react-js-ts-rating-system/static/css/main.bee9177d.css.map",
-    "main.5552579d.js.map": "/Ilya199319922020/react-js-ts-rating-system/static/js/main.5552579d.js.map"
+    "main.css": "/react-js-ts-rating-system/static/css/main.bee9177d.css",
+    "main.js": "/react-js-ts-rating-system/static/js/main.5552579d.js",
+    "index.html": "/react-js-ts-rating-system/index.html",
+    "main.bee9177d.css.map": "/react-js-ts-rating-system/static/css/main.bee9177d.css.map",
+    "main.5552579d.js.map": "/react-js-ts-rating-system/static/js/main.5552579d.js.map"
   },
   "entrypoints": [
     "static/css/main.bee9177d.css",
