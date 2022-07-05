@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { fetchUsers } from "../reduxStore/reducers/usersReducers";
 import { useSelector } from "react-redux";
 import { getUserGradeNegative, getUsersAll, getUsersGradePositive } from "../reduxStore/selector";
-import { Box, Grid,  styled, Typography } from "@mui/material";
+import { Box, Grid, styled, Typography } from "@mui/material";
 import UsersGrade from "./UsersGrade/UsersGrade";
 import UsersList from "./UsersList/UsersList";
 
@@ -13,8 +13,9 @@ const Users: React.FC<any> = (props) => {
 		border: 4px solid #1698E1;
 		border-radius: 10px 10px 0px 0px;
 	}
-	`                                                                          //добавление стиля при активной вкладке   
-	const dispatch: any = useDispatch();                                       //поправить тип хука  
+	`                                                                                     //добавление стиля при активной вкладке   
+	const dispatch = useDispatch<any>();
+
 	const [isRefresh, serIsRefresh] = useState<Boolean>(true);
 	const [isNextNewUsers, setIsNextNewUsers] = useState<Boolean>(false);
 	const [activeTab, setActiveTab] = useState<number>(0);

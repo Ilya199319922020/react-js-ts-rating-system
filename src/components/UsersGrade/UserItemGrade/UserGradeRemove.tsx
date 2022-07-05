@@ -3,6 +3,7 @@ import { Remove, Add, FavoriteBorder, DeleteOutline } from '@mui/icons-material'
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actions } from "../../../reduxStore/reducers/usersReducers";
+import ModalNegative from "./Modal/ModalNegative";
 
 interface PropsUserGradeRemove {
 	username: string,
@@ -14,7 +15,7 @@ interface PropsUserGradeRemove {
 };
 
 const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade, setActiveTab }) => {
-	const dispatch: any = useDispatch();
+	const dispatch = useDispatch<any>();
 	const [isDeleteNegativeUser, setIsDeleteNegativeUser] = useState<boolean>(false);
 	const [open, setOpen] = useState<boolean>(false);
 
@@ -48,8 +49,8 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 			dispatch(actions.setGradeUser(id, userGrade));
 			dispatch(actions.setFilterGradeNegative(userGrade));
 			setActiveTab(0);
+			setIsDeleteNegativeUser(false);
 		}
-		setIsDeleteNegativeUser(false);
 	}, [isDeleteNegativeUser]);
 
 	useEffect(() => {
@@ -63,81 +64,17 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 			dispatch(actions.deleteUserNegative(id, userGrade));
 			dispatch(actions.setFilterGradeNegative(userGrade));
 			setActiveTab(0);
+			setIsDeleteNegativeUser(false);
 		}
-		setIsDeleteNegativeUser(false);
 	}, [open]);
 
 	return (
 		<>
-			<div>
-				<Modal
-					keepMounted
-					open={open}
-				>
-					<Box
-						sx={{
-							position: 'absolute' as 'absolute',
-							top: '50%',
-							left: '50%',
-							transform: 'translate(-50%, -50%)',
-							width: '540px',
-							heigth: '285px',
-							bgcolor: '#F6FCF2',
-							borderRadius: '10px 10px 0px 0px',
-							border: '3px solid #1698E1',
-							boxShadow: 24,
-						}}>
-						<Box
-							sx={{
-								minWidth: '100%',
-								heigth: '42px',
-								bgcolor: '#F17171',
-								borderRadius: '6px 6px 0px 0px',
-							}}
-						>
-							<Typography
-								variant="h6" component="h2" textAlign={'center'}
-							>
-								Ууу...
-							</Typography>
-						</Box>
-						<Box
-							sx={{
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'center',
-								alignItems: 'center',
-								pb: '10px'
-							}}
-						>
-							<Typography variant="h6" component="h2">
-								{username}
-							</Typography>
-							<Typography sx={{ mt: 2 }}>
-								оказался не очень прилежным пользователем
-							</Typography>
-							<Typography sx={{ mt: 2 }}>
-								Пора забанить!
-							</Typography>
-							<Typography sx={{ mt: 2 }}>
-								Сделать это?
-							</Typography>
-							<Stack
-								spacing={2} direction="row"
-							>
-								<Button
-									size="medium"
-									variant="contained"
-									onClick={handleOnClose}
-								>
-									О, да!
-								</Button>
-							</Stack>
-						</Box>
-					</Box>
-				</Modal>
-			</div>
-
+			<ModalNegative
+				handleOnClose={handleOnClose}
+				open={open}
+				username={username}
+			/>
 			<Box
 				sx={{
 					height: '70px',
@@ -153,12 +90,12 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 						width: {
 							sm: 40,
 							md: 40,
-							lg: 60,
+							lg: 45,
 						},
 						height: {
 							sm: 40,
 							md: 40,
-							lg: 60,
+							lg: 45,
 						},
 						display: 'flex',
 						alignItems: 'center',
@@ -170,6 +107,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 						fontSize: '14px',
 						display: 'flex',
 						alignItems: 'center',
+						width: '130px'
 					}}
 				>
 					{username}

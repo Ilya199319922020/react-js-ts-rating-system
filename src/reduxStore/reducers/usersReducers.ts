@@ -23,15 +23,15 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 		case 'FETCH_USERS':
 			let grade: number = 0;
 			return {
-				...state,
-				users: [...action.users.map(j => {
-					j.userGrade = grade;
-					return j;
+				...state,                                                                //при получении пользователей добавляем  
+				users: [...action.users.map(j => {                                       //к каждому элементу поле начальной оценки 
+					j.userGrade = grade;                                                  // на основе этого поля будет фильтрация пользователей 
+					return j;                                                             //в зависимости от его значения по трём вкладкам 
 				}
 				)],
 			}
 		case 'FETCH_NEXT_USERS':
-			let gradeNew: number = 0;
+			let gradeNew: number = 0;                                                   
 			return {
 				...state,
 				users: [
@@ -43,7 +43,7 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 					)
 				],
 			}
-		case 'ADD_NEWGRADE_USER':
+		case 'ADD_NEWGRADE_USER':                                            
 			return {
 				...state,
 				users: state.users.map(p => {

@@ -14,15 +14,17 @@ const reducers = combineReducers({
 	users: persistReducer(persistConfig, usersReducer),
 });
 
-const persistedReducer = persistReducer(persistConfig, reducers);      
-
+const persistedReducer = persistReducer(persistConfig, reducers);                                //добавлена библиотека для хранения 
+                                                                                                 //состояния в локальном хранилище
 export type Reducers = ReturnType<typeof reducers>;
 
 type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never;
 export type ActionsTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesType<T>>;
 
+
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
 export const persistor = persistStore(store);
+
 export default store;
 

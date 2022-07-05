@@ -33,8 +33,7 @@ const UsersGrade: React.FC<PropsUsersGrade> = ({ activeTab, setActiveTab, usersG
 		);
 
 	return (
-		<div
-		>
+		<div>
 			<Stack
 				direction={{
 					xs: 'column',

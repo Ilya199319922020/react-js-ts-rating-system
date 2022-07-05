@@ -15,7 +15,7 @@ interface PropsUsers {
 
 const UserItem: React.FC<PropsUsers> = ({ username, id, setActiveTab }) => {
 	const [gradeUser, setGradeUser] = useState<number>(0);
-	const dispatch: any = useDispatch();
+	const dispatch = useDispatch<any>();
 
 	const onSetGradePositive = (): void => {
 		setGradeUser(prev => prev + 1);
@@ -55,12 +55,12 @@ const UserItem: React.FC<PropsUsers> = ({ username, id, setActiveTab }) => {
 					width: {
 						sm: 40,
 						md: 40,
-						lg: 60,
+						lg: 45,
 					},
 					height: {
 						sm: 40,
 						md: 40,
-						lg: 60,
+						lg: 45,
 					},
 					display: 'flex',
 					alignItems: 'center',
