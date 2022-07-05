@@ -13,15 +13,17 @@ interface PropsUsers {
 	setActiveTab: (activeTab?: any) => void,
 };
 
-const UserItem: React.FC<PropsUsers> = ({ username, id, activeTab, setActiveTab }) => {
+const UserItem: React.FC<PropsUsers> = ({ username, id, setActiveTab }) => {
 	const [gradeUser, setGradeUser] = useState<number>(0);
 	const dispatch: any = useDispatch();
 
 	const onSetGradePositive = (): void => {
 		setGradeUser(prev => prev + 1);
+		console.log('добавление пользователя в список с  положительной оценкой');
 	};
 	const onSetGradeNegative = (): void => {
 		setGradeUser(prev => prev - 1);
+		console.log('добавление пользователя в список с  отрицательной оценкой');
 	};
 
 	useEffect(() => {

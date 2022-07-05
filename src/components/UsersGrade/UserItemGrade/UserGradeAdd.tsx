@@ -22,21 +22,25 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade, se
 		if (userGrade <= 4) {
 			dispatch(actions.setUserСounterPositivePlus(id));
 			setActiveTab(2);
+			console.log('увеличение положительной оценки')
 		}
 	};
 	const onChangeGradeMinus = (): void => {
 		if (userGrade >= 1) {
 			dispatch(actions.setUserСounterPositiveMinus(id));
 			setActiveTab(2);
+			console.log('уменьшение положительной оценки')
 		}
 	};
 	const onDeleteItemUser = (): void => {
 		setIsDeleteItemUser(true);
+		console.log('удалить пользователя с нулевой оценкой из положительного списка')
 	};
 
 	const handleOnClose = (): void => {
 		setOpen(false);
-		setIsDeleteItemUser(true)
+		setIsDeleteItemUser(true);
+		console.log('вознаградить пользователя с положительной оценкой')
 	};
 
 	useEffect(() => {

@@ -13,7 +13,7 @@ interface PropsUserGradeRemove {
 	setActiveTab: (activeTab: number,) => void,
 };
 
-const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade, activeTab, setActiveTab }) => {
+const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade, setActiveTab }) => {
 	const dispatch: any = useDispatch();
 	const [isDeleteNegativeUser, setIsDeleteNegativeUser] = useState<boolean>(false);
 	const [open, setOpen] = useState<boolean>(false);
@@ -22,20 +22,25 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 		if (userGrade <= (-1)) {
 			dispatch(actions.setUserСounterNegativePlus(id));
 			setActiveTab(1);
+			console.log('увеличение отрицательной оценки');
 		}
 	};
 	const onChangeGradeMinus = (): void => {
 		if (userGrade >= (-4)) {
 			dispatch(actions.setUserСounterNegativeMinus(id));
 			setActiveTab(1);
+			console.log('уменьшение положительной оценки');
 		}
 	};
 	const onDeleteNegativeUser = (): void => {
 		setIsDeleteNegativeUser(true);
+		console.log('удалить пользователя с нулевой оценкой из отрицательного списка')
+
 	};
 	const handleOnClose = (): void => {
 		setOpen(false);
-		setIsDeleteNegativeUser(true)
+		setIsDeleteNegativeUser(true);
+		console.log('отправить в бан пользователя с положительной оценкой')
 	};
 
 	useEffect(() => {
