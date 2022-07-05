@@ -6,7 +6,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={< UsersComponent />} />
+      <Route path='/react-js-ts-rating-system' element={< UsersComponent />} />
     </Routes>
   </BrowserRouter>
   );
