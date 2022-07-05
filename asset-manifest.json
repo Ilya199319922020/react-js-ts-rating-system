@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ilya199319922020/react-js-ts-rating-system/static/css/main.bee9177d.css",
+    "main.js": "/Ilya199319922020/react-js-ts-rating-system/static/js/main.6c0a282f.js",
+    "index.html": "/Ilya199319922020/react-js-ts-rating-system/index.html",
+    "main.bee9177d.css.map": "/Ilya199319922020/react-js-ts-rating-system/static/css/main.bee9177d.css.map",
+    "main.6c0a282f.js.map": "/Ilya199319922020/react-js-ts-rating-system/static/js/main.6c0a282f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bee9177d.css",
+    "static/js/main.6c0a282f.js"
+  ]
+}
