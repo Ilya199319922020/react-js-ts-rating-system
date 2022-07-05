@@ -10,11 +10,11 @@ const persistConfig = {
 	storage,
 	blacklist:['users']
 }
-const reducers = combineReducers({
+const reducers = combineReducers({                        
 	users: persistReducer(persistConfig, usersReducer),
 });
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, reducers);      
 
 export type Reducers = ReturnType<typeof reducers>;
 

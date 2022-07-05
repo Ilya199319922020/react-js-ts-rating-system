@@ -15,18 +15,19 @@ interface PropsUserGradeAdd {
 
 const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade, setActiveTab }) => {
 	const dispatch: any = useDispatch();
-	const [gradeCurrentPositive, setGradeCurrentPositive] = useState<number>(userGrade);
 	const [isDeleteItemUser, setIsDeleteItemUser] = useState<Boolean>(false);
 	const [open, setOpen] = useState<boolean>(false);
 
 	const onChangeGradePlus = (): void => {
-		if (gradeCurrentPositive <= 4) {
-			setGradeCurrentPositive(prev => prev + 1);
+		if (userGrade <= 4) {
+			dispatch(actions.setUserСounterPositivePlus(id));
+			setActiveTab(2);
 		}
 	};
 	const onChangeGradeMinus = (): void => {
-		if (gradeCurrentPositive >= 1) {
-			setGradeCurrentPositive(prev => prev - 1);
+		if (userGrade >= 1) {
+			dispatch(actions.setUserСounterPositiveMinus(id));
+			setActiveTab(2);
 		}
 	};
 	const onDeleteItemUser = (): void => {
@@ -40,23 +41,23 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade, se
 
 	useEffect(() => {
 		if (isDeleteItemUser) {
-			dispatch(actions.setGradeUser(id, gradeCurrentPositive));
-			dispatch(actions.setFilterGradePositive(gradeCurrentPositive));
+			dispatch(actions.setGradeUser(id, userGrade));
+			dispatch(actions.setFilterGradePositive(userGrade));
 			setActiveTab(0);
 		}
 		setIsDeleteItemUser(false);
 	}, [isDeleteItemUser]);
 
 	useEffect(() => {
-		if (gradeCurrentPositive === 5) {
+		if (userGrade === 5) {
 			setOpen(true);
 		}
-	}, [gradeCurrentPositive]);
+	}, [userGrade]);
 
 	useEffect(() => {
 		if (isDeleteItemUser) {
-			dispatch(actions.deleteUserPositive(id, gradeCurrentPositive));
-			dispatch(actions.setFilterGradePositive(gradeCurrentPositive));
+			dispatch(actions.deleteUserPositive(id, userGrade));
+			dispatch(actions.setFilterGradePositive(userGrade));
 			setActiveTab(0);
 		}
 		setIsDeleteItemUser(false);
@@ -213,7 +214,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade, se
 
 				</Box>
 				{
-					gradeCurrentPositive === 0
+					userGrade === 0
 						?
 						<IconButton
 							sx={{
@@ -262,7 +263,7 @@ const UserGradeAdd: React.FC<PropsUserGradeAdd> = ({ id, username, userGrade, se
 									color: '#8BCC64',
 								}}
 							>
-								{gradeCurrentPositive}
+								{userGrade}
 							</Typography>
 
 						</Box>

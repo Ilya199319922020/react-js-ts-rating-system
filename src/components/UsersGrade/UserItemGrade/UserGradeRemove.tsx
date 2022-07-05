@@ -13,20 +13,21 @@ interface PropsUserGradeRemove {
 	setActiveTab: (activeTab: number,) => void,
 };
 
-const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade, setActiveTab }) => {
+const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGrade, activeTab, setActiveTab }) => {
 	const dispatch: any = useDispatch();
-	const [gradeCurrentNegative, setGradeCurrentNegative] = useState<number>(userGrade);
 	const [isDeleteNegativeUser, setIsDeleteNegativeUser] = useState<boolean>(false);
 	const [open, setOpen] = useState<boolean>(false);
 
 	const onChangeGradePlus = (): void => {
-		if (gradeCurrentNegative <= (-1)) {
-			setGradeCurrentNegative(prev => prev + 1);
+		if (userGrade <= (-1)) {
+			dispatch(actions.setUserСounterNegativePlus(id));
+			setActiveTab(1);
 		}
 	};
 	const onChangeGradeMinus = (): void => {
-		if (gradeCurrentNegative >= (-4)) {
-			setGradeCurrentNegative(prev => prev - 1);
+		if (userGrade >= (-4)) {
+			dispatch(actions.setUserСounterNegativeMinus(id));
+			setActiveTab(1);
 		}
 	};
 	const onDeleteNegativeUser = (): void => {
@@ -39,23 +40,23 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 
 	useEffect(() => {
 		if (isDeleteNegativeUser) {
-			dispatch(actions.setGradeUser(id, gradeCurrentNegative));
-			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
+			dispatch(actions.setGradeUser(id, userGrade));
+			dispatch(actions.setFilterGradeNegative(userGrade));
 			setActiveTab(0);
 		}
 		setIsDeleteNegativeUser(false);
 	}, [isDeleteNegativeUser]);
 
 	useEffect(() => {
-		if (gradeCurrentNegative === (-5)) {
+		if (userGrade === (-5)) {
 			setOpen(true)
 		}
-	}, [gradeCurrentNegative]);
+	}, [userGrade]);
 
 	useEffect(() => {
 		if (isDeleteNegativeUser) {
-			dispatch(actions.deleteUserNegative(id, gradeCurrentNegative));
-			dispatch(actions.setFilterGradeNegative(gradeCurrentNegative));
+			dispatch(actions.deleteUserNegative(id, userGrade));
+			dispatch(actions.setFilterGradeNegative(userGrade));
 			setActiveTab(0);
 		}
 		setIsDeleteNegativeUser(false);
@@ -169,7 +170,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 					{username}
 				</Typography>
 				{
-					gradeCurrentNegative === 0
+					userGrade === 0
 						?
 						<IconButton
 							sx={{
@@ -218,7 +219,7 @@ const UserGradeRemove: React.FC<PropsUserGradeRemove> = ({ id, username, userGra
 									color: '#F17171',
 								}}
 							>
-								{gradeCurrentNegative}
+								{userGrade}
 							</Typography>
 						</Box>
 				}

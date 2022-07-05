@@ -13,6 +13,7 @@ export interface UsersState {
 	userGradePositive: Array<any>,
 	userGradeNegative: Array<any>,
 };
+
 export type InitialState = typeof initialState;
 type UsersAction = ActionsTypes<typeof actions>;
 export type ThunkType = ThunkAction<Promise<void>, Reducers, unknown, UsersAction>
@@ -69,7 +70,6 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 					return p;
 				}),
 			}
-
 		case 'FILTER_USERS':
 			return {
 				...state,
@@ -113,6 +113,46 @@ const usersReducer = (state = initialState, action: UsersAction): UsersState => 
 				}),
 				users: [...state.users, ...state.userGradePositive.filter(p => p.userGrade === 0)],
 			}
+		case 'COUNTER_USER_NEGATIVE_MINUS':
+			return {
+				...state,
+				userGradeNegative: state.userGradeNegative.map(p => {
+					if (p.id === action.userId) {
+						return { ...p, userGrade: p.userGrade - 1 }
+					}
+					return p;
+				}),
+			}
+		case 'COUNTER_USER_NEGATIVE_PLUS':
+			return {
+				...state,
+				userGradeNegative: state.userGradeNegative.map(p => {
+					if (p.id === action.userId) {
+						return { ...p, userGrade: p.userGrade + 1 }
+					}
+					return p;
+				}),
+			}
+			case 'COUNTER_USER_POSITIVE_MINUS':
+			return {
+				...state,
+				userGradePositive: state.userGradePositive.map(p => {
+					if (p.id === action.userId) {
+						return { ...p, userGrade: p.userGrade - 1 }
+					}
+					return p;
+				}),
+			}
+		case 'COUNTER_USER_POSITIVE_PLUS':
+			return {
+				...state,
+				userGradePositive: state.userGradePositive.map(p => {
+					if (p.id === action.userId) {
+						return { ...p, userGrade: p.userGrade + 1 }
+					}
+					return p;
+				}),
+			}
 		default:
 			return state;
 	}
@@ -128,6 +168,10 @@ export const actions = {
 	setFilterGradePositive: (valueGrade: number) => ({ type: 'FILTER_USER_GRADE_POSITIVE', valueGrade } as const),
 	deleteUserNegative: (userId: number, valueGrade: number) => ({ type: 'REMOVE_USER_NEGATIVE', userId, valueGrade } as const),
 	deleteUserPositive: (userId: number, valueGrade: number) => ({ type: 'REMOVE_USER_POSITIVE', userId, valueGrade } as const),
+	setUserСounterNegativeMinus: (userId: number) => ({ type: 'COUNTER_USER_NEGATIVE_MINUS', userId } as const),
+	setUserСounterNegativePlus: (userId: number) => ({ type: 'COUNTER_USER_NEGATIVE_PLUS', userId } as const),
+	setUserСounterPositivePlus: (userId: number) => ({ type: 'COUNTER_USER_POSITIVE_PLUS', userId } as const),
+	setUserСounterPositiveMinus: (userId: number) => ({ type: 'COUNTER_USER_POSITIVE_MINUS', userId } as const),
 };
 
 export const fetchUsers = (isNextNewUsers?: Boolean, isFetchUsers?: Boolean): ThunkType => {
