@@ -1,7 +1,7 @@
 {
   "name": "react-js-ts-rating-system",
   "version": "0.1.0",
-  "homepage": "https://github.com/Ilya199319922020/react-js-ts-rating-system",
+  "homepage": "https://github.com/Ilya199319922020/react-js-ts-rating-system/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
