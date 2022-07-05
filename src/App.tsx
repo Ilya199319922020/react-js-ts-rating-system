@@ -5,10 +5,10 @@ import UsersComponent from './components/Users';
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path='/react-js-ts-rating-system' element={< UsersComponent />} />
-    </Routes>
-  </BrowserRouter>
+      <Routes>
+        <Route path='/react-js-ts-rating-system' element={< UsersComponent />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
